@@ -1,0 +1,31 @@
+<h1>Listing houses</h1>
+
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Rent</th>
+      <th>Link</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @houses.each do |house| %>
+      <tr>
+        <td><%= house.name %></td>
+        <td><%= house.address %></td>
+        <td><%= house.rent %></td>
+        <td><%= house.link %></td>
+        <td><%= link_to 'Show', house, class: "btn btn-link" %></td>
+        <td><%= link_to 'Edit', edit_house_path(house), class: "btn btn-link" %></td>
+        <td><%= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New House', new_house_path %>
