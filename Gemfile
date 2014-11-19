@@ -11,9 +11,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'paperclip', '~> 3.0'
-gem 'sqlite3', group: :development
+gem "paperclip-dropbox", ">= 1.1.7"
+gem "figaro"
 
-gem 'rails_12factor', group: :production
-gem 'pg', group: :production
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+end
 
 
