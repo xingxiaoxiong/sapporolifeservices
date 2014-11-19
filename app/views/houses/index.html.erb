@@ -23,7 +23,7 @@
         <td><%= house.name %></td>
         <td><%= house.address %></td>
         <td><%= house.rent %></td>
-        <td><%= house.link %></td>
+        <td><%= link_to house.link, house.link %></td>
         <td><%= link_to 'Show', house, class: "btn btn-link" %></td>
         <td><%= link_to 'Edit', edit_house_path(house), class: "btn btn-link" %></td>
         <td><%= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
