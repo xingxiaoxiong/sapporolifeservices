@@ -1,29 +1,41 @@
-
-
-<p>
+<div class="row">
+  <div class="col-md-3">
     <%= image_tag @house.image.url(:medium) %>
-</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @house.name %>
-</p>
+    <h2>
+      <%= @house.name %>
+    </h2>
 
-<p>
-  <strong>Address:</strong>
-  <%= @house.address %>
-</p>
+    <p>
+      <strong>Address:</strong>
+      <%= @house.address %>
+    </p>
 
-<p>
-  <strong>Rent:</strong>
-  <%= @house.rent %>
-</p>
+    <p>
+      <strong>Rent:</strong>
+      <%= @house.rent %>
+    </p>
 
-<p>
-  <strong>Link:</strong>
-  <%= @house.link %>
-</p>
 
-<%= link_to "Write Review", new_house_review_path(@house), class: "btn btn-primary" %>
+    <p>
+      <strong>Link:</strong>
+      <%= link_to @house.link, @house.link %>
+    </p>
+
+    <%= link_to "Write Review", new_house_review_path(@house), class: "btn btn-primary" %>
+  </div>
+   
+  <div class="col-md-9">
+    <% if @reviews.blank? %>
+      <h3>No reviews yet. Be the first to write one!</h3>
+    <% else %>
+      <% @reviews.each do |review| %>
+        <p><%= review.rating %></p>
+        <p><%= review.comment %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-link" %> |
 <%= link_to 'Back', houses_path, class: "btn btn-link" %>

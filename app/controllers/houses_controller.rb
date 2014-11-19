@@ -10,6 +10,7 @@ class HousesController < ApplicationController
   # GET /houses/1
   # GET /houses/1.json
   def show
+    @reviews = Review.where(house_id: @house.id)
   end
 
   # GET /houses/new
