@@ -3,6 +3,7 @@
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
+      <th>Image</th>
       <th>Name</th>
       <th>Address</th>
       <th>Rent</th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @houses.each do |house| %>
       <tr>
+        <td><%= image_tag house.image.url(:medium) %></td>
         <td><%= house.name %></td>
         <td><%= house.address %></td>
         <td><%= house.rent %></td>
