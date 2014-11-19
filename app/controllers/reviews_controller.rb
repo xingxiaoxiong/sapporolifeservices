@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_house
 
 
   # GET /reviews/new
@@ -17,6 +18,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
+    @review.house_id = @house.id
 
     respond_to do |format|
       if @review.save
@@ -57,6 +59,10 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_house
+      @house = House.find(params[:house_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
