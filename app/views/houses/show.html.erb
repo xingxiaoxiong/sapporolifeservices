@@ -30,8 +30,30 @@
       <h3>No reviews yet. Be the first to write one!</h3>
     <% else %>
       <% @reviews.each do |review| %>
-        <div class="star-rating" data-score= <%= review.rating %> ></div>
-        <p><%= review.comment %></p>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-md-4"></th>
+            <th class="col-md-8"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <h4>
+                <%= review.user.name %>
+              </h4>
+              <p><%= review.created_at.strftime("%-m/%-d/%-y") %></p>
+            </td>
+            <td>
+            
+              <div class="star-rating" data-score= <%= review.rating %> ></div>
+              <p><%= review.comment %></p>
+            
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <% end %>
     <% end %>
   </div>

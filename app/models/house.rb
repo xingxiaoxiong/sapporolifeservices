@@ -5,4 +5,5 @@ class House < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   has_many :reviews
+  validates :name, presence: true
 end
