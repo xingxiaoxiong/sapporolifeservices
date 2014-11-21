@@ -1,6 +1,15 @@
 class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:search, :index, :show]
+
+
+  def search
+    if params[:search].present?
+      @houses = House.search(params[:search])
+    else
+      @houses = House.all
+    end
+  end
 
   # GET /houses
   # GET /houses.json
