@@ -49,6 +49,13 @@
             
               <div class="star-rating" data-score= <%= review.rating %> ></div>
               <p><%= review.comment %></p>
+
+              <% if user_signed_in? %>
+                <% if (review.user == current_user) || (current_user.admin?) %>
+                  <%= link_to "Edit", edit_house_review_path(@house, review) %>
+                  <%= link_to "Delete", house_review_path(@house, review), method: :delete %>
+                <% end %>
+              <% end %>
             
             </td>
           </tr>
