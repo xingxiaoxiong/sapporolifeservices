@@ -12,7 +12,7 @@
       <th>Address</th>
       <th>Rent</th>
       <th>Link</th>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && current_user.admin? %>
         <th colspan="2"></th>
       <% end %>
     </tr>
@@ -26,7 +26,7 @@
         <td><%= house.address %></td>
         <td><%= house.rent %></td>
         <td><%= link_to house.link, house.link %></td>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.admin? %>
           <td><%= link_to 'Show', house, class: "btn btn-link" %></td>
           <td><%= link_to 'Edit', edit_house_path(house), class: "btn btn-link" %></td>
           <td><%= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
@@ -38,6 +38,6 @@
 
 <br>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.admin? %>
   <%= link_to 'New House', new_house_path %>
 <% end %>
