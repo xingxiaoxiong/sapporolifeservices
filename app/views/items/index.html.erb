@@ -1,31 +1,24 @@
 <h1>Listing items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= image_tag item.photo.url(:medium) %></td>
-        <td><%= item.name %></td>
-        <td><%= item.price %></td>
-        <td><%= item.description %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="items">
+  <% @items.each do |item| %>
+    <div class="box">
+      <%= image_tag item.photo.url(:medium) %>
+      <%= item.name %>
+      <%= item.price %>
+      <%= item.description %>
+      <%= item.user.name if item.user %>
+      <%= link_to 'Show', item_path(item) %>
+      <% if item.user == current_user %> <%= link_to 'Edit', edit_item_path(item) %> <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %> <% end %>
+
+    </div>
+  <% end %>
+</div>
+
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Item', new_item_path, class: "btn btn-link" %>
+<% end %>
