@@ -8,13 +8,57 @@
     <h3><%= @item.name %></h3>
     <p>¥<%= @item.price %></p>
     <p><%= @item.description %></p>
+
+
+
+    <% if @comments.blank? %>
+      <h3>No reviews yet. Be the first to write one!</h3>
+    <% else %>
+      <% @comments.each do |comment| %>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-md-4"></th>
+            <th class="col-md-8"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <h4>
+                <%= comment.user.name %>
+              </h4>
+              <p><%= comment.created_at.strftime("%-m/%-d/%-y") %></p>
+            </td>
+            <td>
+            
+              <p><%= comment.comment %></p>
+
+              <% if user_signed_in? %>
+                <% if (comment.user == current_user) || (current_user.admin?) %>
+                  <%= link_to "Edit", edit_item_comment_path(@item, comment) %>
+                  <%= link_to "Delete", item_comment_path(@item, comment), method: :delete %>
+                <% end %>
+              <% end %>
+            
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    <% end %>
+
+
   </div>
 <div>
 
 <br />
 
 
+<%= link_to "Write Review", new_item_comment_path(@item), class: "btn btn-primary" %>
+
 <% if current_user == @item.user %>
   <%= link_to '编辑', edit_item_path(@item), class: "btn btn-link" %> |
 <% end %>
+
 <%= link_to '返回', item_path, class: "btn btn-link" %>

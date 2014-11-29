@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
 
-  resources :comments
+  
 
-  resources :items
+  resources :items do
+    resources :comments, except: [:show, :index]
+  end
 
   devise_for :users
   resources :houses do
